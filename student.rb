@@ -1,9 +1,9 @@
 require './person'
 
 class Student < Person
-  def initialize(classrom)
-    super(name = 'unknown', age, parent_permission = true)
-    @classrom = classrom
+  def initialize(classroom)
+    super('unknown', nil, parent_permission: true)
+    @classrom = classroom
   end
 
   def play_hooky
