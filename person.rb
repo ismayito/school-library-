@@ -1,5 +1,4 @@
 require './decorator'
-require './rental'
 class Person < Nameable
   attr_accessor :name, :age, :rentals
   attr_reader :id
