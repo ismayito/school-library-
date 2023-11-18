@@ -176,7 +176,4 @@ class App
   end
   # rubocop:enable Metrics/CyclomaticComplexity
 
-  def handle_invalid_option
-    puts 'Invalid option. Please choose between 1 and 7'
-  end
-end
+ end
