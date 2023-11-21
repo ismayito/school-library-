@@ -10,21 +10,23 @@ This repository includes files with enumerable.rb file that contains a program t
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [school-library-](#school-library-)
+  - [Getting Started](#getting-started)
+- [📗 Table of Contents](#-table-of-contents)
+- [📖 \[school-library-\] ](#-school-library--)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Usage](#usage)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
 
@@ -100,11 +102,18 @@ Example command:
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
-**Mayito Ismail**
+
+👤 **Mayito Ismail**
 
 - GitHub: [@ismayito](https://github.com/ismayito)
 - Twitter: [@IsmailMayito](https://twitter.com/IsmailMayito)
 - LinkedIn: [mayito-ismail](https://www.linkedin.com/in/mayito-ismail-2b0067178/)
+
+👤 **Raphael Miyoyo**
+
+- GitHub: [@rmiyoyo](https://github.com/rmiyoyo)
+- Twitter: [@r_miyoyo](https://twitter.com/r_miyoyo)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/raphael-miyoyo)
 
 <!-- FUTURE FEATURES -->
 
