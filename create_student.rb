@@ -2,8 +2,9 @@ require './app'
 class CreateStudent
   attr_accessor :person
 
-  def initialize(person)
+  def initialize(person, app_instance)
     @person = person
+    @app_instance = app_instance
   end
 
   # method to create a student
@@ -25,7 +26,7 @@ class CreateStudent
     else
       puts 'Invalid  permission choose [Y/N]'
     end
-    App.new.options_list
-    App.new.choose_option
+    @app_instance.options_list
+    @app_instance.choose_option
   end
 end

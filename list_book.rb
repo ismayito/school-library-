@@ -4,8 +4,9 @@ require './book'
 class ListBook
   attr_accessor :books
 
-  def initialize(books)
+  def initialize(books, app_instance)
     @books = books
+    @app_instance = app_instance
   end
 
   # method to return list of books
@@ -19,6 +20,6 @@ class ListBook
         puts "Author: #{book.author}"
       end
     end
-    App.new.choose_option
+    @app_instance.choose_option
   end
 end

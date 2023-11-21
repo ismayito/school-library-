@@ -1,10 +1,9 @@
 require './app'
 require './book'
 class CreateBook
-  attr_accessor :books
-
-  def initialize(books)
+  def initialize(books, app_instance)
     @books = books
+    @app_instance = app_instance
   end
 
   # method to create a new book by the user
@@ -17,7 +16,7 @@ class CreateBook
     @books.push(added_book)
     puts 'Book successfully created'
     puts 'Choose another option to perform another operation'
-    App.new.options_list
-    App.new.choose_option
+    @app_instance.options_list
+    @app_instance.choose_option
   end
 end

@@ -71,10 +71,10 @@ class App
     option = gets.chomp.to_i
 
     case option
-    when 1 then ListBook.new(@books).list_books
-    when 2 then ListPeople.new(@person).list_people
-    when 3 then CreatePerson.new(@person).create_person
-    when 4 then CreateBook.new(@books).create_book
+    when 1 then ListBook.new(@books, self).list_books
+    when 2 then ListPeople.new(@person, self).list_people
+    when 3 then CreatePerson.new(@person, self).create_person
+    when 4 then CreateBook.new(@books, self).create_book
     when 5 then create_rental
     when 6 then list_rental_for_a_person
     when 7 then stop_application

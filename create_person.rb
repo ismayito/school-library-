@@ -6,8 +6,9 @@ require './create_teacher'
 class CreatePerson
   attr_accessor :person
 
-  def initialize(person)
+  def initialize(person, app_instance)
     @person = person
+    @app_instance = app_instance
   end
 
   # method to add a new person
@@ -18,9 +19,9 @@ class CreatePerson
     case choice
     when 1
       puts 'run create student method'
-      CreateStudent.new(@person).create_student
+      CreateStudent.new(@person, @app_instance).create_student
     when 2 then puts 'run create teacher method'
-                CreateTeacher.new(@person).create_teacher
+                CreateTeacher.new(@person, @app_instance).create_teacher
     else
       puts 'Please enter a valid choice either 1 or 2'
     end

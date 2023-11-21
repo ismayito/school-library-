@@ -2,8 +2,9 @@ require './app'
 class ListPeople
   attr_accessor :person
 
-  def initialize(person)
+  def initialize(person, app_instance)
     @person = person
+    @app_instance = app_instance
   end
 
   # method to display a list of people added
@@ -16,6 +17,6 @@ class ListPeople
         puts "[ @Id:[#{person.id}] Name: #{person.name} Age: #{person.age} Class:#{person.class}]"
       end
     end
-    App.new.choose_option
+    @app_instance.choose_option
   end
 end

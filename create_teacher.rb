@@ -2,8 +2,9 @@ require './app'
 class CreateTeacher
   attr_accessor :person
 
-  def initialize(person)
+  def initialize(person, app_instance)
     @person = person
+    @app_instance = app_instance
   end
 
   def create_teacher
@@ -16,7 +17,7 @@ class CreateTeacher
     @person.push(Teacher.new(specialization, age, name))
     puts 'Teacher successfully created'
     puts ''
-    App.new.options_list
-    App.new.choose_option
+    @app_instance.options_list
+    @app_instance.choose_option
   end
 end
