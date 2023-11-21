@@ -68,18 +68,22 @@ class App
   # method to enable a user enter an operation to perform an action or operation
   # rubocop:disable Metrics/CyclomaticComplexity
   def choose_option
-    option = gets.chomp.to_i
-
-    case option
-    when 1 then ListBook.new(@books, self).list_books
-    when 2 then ListPeople.new(@person, self).list_people
-    when 3 then CreatePerson.new(@person, self).create_person
-    when 4 then CreateBook.new(@books, self).create_book
-    when 5 then create_rental
-    when 6 then list_rental_for_a_person
-    when 7 then stop_application
-    else
-      handle_invalid_option
+    loop do
+      option = gets.chomp.to_i
+      case option
+      when 1 then ListBook.new(@books, self).list_books
+      when 2 then ListPeople.new(@person, self).list_people
+      when 3 then CreatePerson.new(@person, self).create_person
+      when 4 then CreateBook.new(@books, self).create_book
+      when 5
+        create_rental
+        options_list
+        break
+      when 6 then list_rental_for_a_person
+      when 7 then stop_application
+      else
+        handle_invalid_option
+      end
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
