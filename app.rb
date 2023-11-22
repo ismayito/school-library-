@@ -8,6 +8,7 @@ require './create_book'
 require './list_book'
 require './list_people'
 require './create_person'
+require 'json'
 
 class App
   attr_accessor :person, :books, :rentals
@@ -63,6 +64,28 @@ class App
   def stop_application
     puts 'Exiting the application'
     exit
+  end
+
+  # method to save books to 'books.json'
+  def save_books_to_json
+    existing_books = load_books_from_json
+    all_books = existing_books + @books.map { |book| { title: book.title, author: book.author } }
+
+    File.open('books.json', 'w') do |file|
+      file.puts JSON.pretty_generate(all_books)
+    end
+
+    puts 'Books saved to books.json'
+  end
+
+  # method to load books from 'books.json'
+  def load_books_from_json
+    if File.exist?('books.json')
+      json_data = File.read('books.json')
+      JSON.parse(json_data)
+    else
+      []
+    end
   end
 
   # method to enable a user enter an operation to perform an action or operation
