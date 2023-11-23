@@ -11,7 +11,7 @@ class ListBook
 
   # method to return list of books
   def list_books
-    loaded_books = load_books_from_json
+    loaded_books = load_books_from_json + @books
 
     if loaded_books.empty?
       puts 'No books available.'
