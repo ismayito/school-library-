@@ -8,6 +8,7 @@ require './create_book'
 require './list_book'
 require './list_people'
 require './create_person'
+require './read_files'
 require 'json'
 
 class App
@@ -17,10 +18,14 @@ class App
     @person = []
     @books = []
     @rentals = []
+    @stored_people = people_file
+    @stored_books = books_file
+    @stored_rentals = rentals_file
   end
   puts 'welcome to school library console app UI'
 
   def run
+    load_data_from_json_files
     print "Running the app \n"
   end
   puts 'Choose an option to get started'
@@ -88,26 +93,42 @@ class App
     end
   end
 
+  def preserve_data
+    @stored_people += @person
+    File.write('people.json', JSON.generate(@stored_people).to_s)
+
+    @stored_books += @books
+    File.write('books.json', JSON.generate(@stored_books).to_s)
+
+    File.write('rentals.json', JSON.generate(@stored_rentals).to_s)
+    puts 'Thank you for using this app!'
+  end
+
   # method to enable a user enter an operation to perform an action or operation
   # rubocop:disable Metrics/CyclomaticComplexity
   def choose_option
     loop do
       option = gets.chomp.to_i
       case option
-      when 1 then ListBook.new(@books, self).list_books
-      when 2 then ListPeople.new(@person, self).list_people
+      when 1 then ListBook.new(@books, self).list_books + stored_books
+      when 2 then ListPeople.new(@person, self).list_all_people
       when 3 then CreatePerson.new(@person, self).create_person
       when 4 then CreateBook.new(@books, self).create_book
-      when 5
-        create_rental
-        options_list
-        break
+      when 5 then create_rental(self)
       when 6 then list_rental_for_a_person
-      when 7 then stop_application
+      when 7
+        preserve_data
+        stop_application
       else
         handle_invalid_option
       end
     end
+  end
+
+  def load_data_from_json_files
+    @person += people_file
+    @books += books_file
+    @rentals += rentals_file
   end
   # rubocop:enable Metrics/CyclomaticComplexity
 end
