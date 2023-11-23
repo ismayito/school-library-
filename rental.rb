@@ -20,8 +20,3 @@ class Rental
     person.rentals.push(person) unless person.rentals.include?(person)
   end
 end
-
-person = Person.new(22, 'mayito')
-book = Book.new('comic', 'author')
-rent = Rental.new('12-02-2023', person, book)
-p rent

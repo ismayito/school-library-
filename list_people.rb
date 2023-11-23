@@ -1,4 +1,6 @@
 require './app'
+require './student'
+require './teacher'
 class ListPeople
   attr_accessor :person
 
@@ -14,7 +16,16 @@ class ListPeople
       puts 'Choose option 3 to add a person'
     else
       @person.each do |person|
-        puts "[ @Id:[#{person.id}] Name: #{person.name} Age: #{person.age} Class:#{person.class}]"
+        # puts "[ @Id:[#{person.id}]  Name: #{person.name} Age: #{person.age} Class:#{person.class}]"
+        if person.is_a?(Student)
+          puts "[ @Id:[#{person.id}] Name: #{person.name} Age: #{person.age} Class:#{person.class}]"
+        elsif person.is_a?(Teacher)
+          # Handle the Teacher class
+          puts "[ @Id:[#{person.id}] Name: #{person.name} Age: #{person.age} Specialization: #{person.specialization}]"
+        else
+          # Handle the hash case differently
+          puts "[ @Id:[#{person['id']}] Name: #{person['name']} Age: #{person['age']} Class:#{person['class']}]"
+        end
       end
     end
     @app_instance.choose_option

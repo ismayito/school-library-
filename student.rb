@@ -14,6 +14,17 @@ class Student < Person
     classroom.students.push(self) unless classroom.students.include?(self)
   end
 
+  def to_hash
+    {
+      id: @id,
+      name: @name,
+      age: @age,
+      parent_permission: @parent_permission,
+      rentals: @rentals,
+      classroom: @classroom
+    }
+  end
+
   def play_hooky
     '¯(ツ)/¯'
   end

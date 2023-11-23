@@ -12,6 +12,17 @@ class Person < Nameable
     @rentals = []
   end
 
+  def to_hash
+    {
+      'id' => @id,
+      'name' => @name,
+      'age' => @age,
+      'parent_permission' => @parent_permission,
+      'rentals' => @rentals,
+      'classroom' => @classroom
+    }
+  end
+
   def correct_name
     @name
   end

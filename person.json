@@ -1,0 +1,42 @@
+[
+  {
+    "id": 950,
+    "name": "mayito",
+    "age": 23,
+    "parent_permission": true,
+    "rentals": [
+
+    ],
+    "classroom": false
+  },
+  {
+    "id": 283,
+    "name": "ismail",
+    "age": 45,
+    "parent_permission": true,
+    "rentals": [
+
+    ],
+    "classroom": false
+  },
+  {
+    "id": 721,
+    "name": "ken ",
+    "age": 45,
+    "parent_permission": true,
+    "rentals": [
+
+    ],
+    "classroom": false
+  },
+  {
+    "id": 457,
+    "name": "miyoyo",
+    "age": 24,
+    "parent_permission": true,
+    "rentals": [
+
+    ],
+    "classroom": null
+  }
+]
