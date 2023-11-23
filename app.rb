@@ -18,10 +18,10 @@ class App
     @books = load_books_from_json
     @rentals = load_rentals_from_json
   end
-  puts 'welcome to school library console app UI'
+  puts 'Welcome to School Library Console App UI'
 
   def run
-    print "Running the app \n"
+    print "Running the App... \n"
   end
   puts 'Choose an option to get started'
 
