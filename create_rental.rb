@@ -10,7 +10,7 @@ def create_rental
   print 'ID of person: (Choose "ID" from the above list)'
   person_id = gets.chomp.to_i
   person = @person.find { |p| p['id'] == person_id }
-  person_hashed = Person.new(person['age'], person['name'])
+  person_hashed = Person.new(person['age'], person['name'], id: person['id'])
   list_book
   print 'book type: (Choose book from the above list)'
   book_title = gets.chomp
@@ -65,31 +65,52 @@ def person_to_hash(person)
   }
 end
 
-# method to save rentals to 'rentals.json'
 def save_rentals_to_json(rentals)
-  rentals_data = rentals.map do |rental|
-    {
-      'date' => rental.date,
-      'person' => person_to_hash(rental.person),
-      'book' => book_to_hash(rental.book)
-    }
+  existing_rentals = load_rentals_from_json
+  update_existing_rentals(existing_rentals, rentals)
+  write_rentals_to_json(existing_rentals)
+end
+
+def update_existing_rentals(existing_rentals, rentals)
+  rentals.each do |rental|
+    person_id = rental.person.id
+    existing_person = existing_rentals.find { |r| r['person']['id'] == person_id }
+    if existing_person
+      existing_person['person']['rentals'] << {
+        'date' => rental.date,
+        'book' => book_to_hash(rental.book)
+      }
+    else
+      add_new_person(existing_rentals, rental)
+    end
   end
-  File.write('rentals.json', JSON.pretty_generate(rentals_data))
+end
+
+def add_new_person(existing_rentals, rental)
+  existing_rentals << {
+    'person' => person_to_hash(rental.person)
+  }
+  existing_rentals.last['person']['rentals'] = [{
+    'date' => rental.date,
+    'book' => book_to_hash(rental.book)
+  }]
+end
+
+def write_rentals_to_json(existing_rentals)
+  File.write('rentals.json', JSON.pretty_generate(existing_rentals))
 end
 
 # Convert a Book object to a hash
 def book_to_hash(book)
   {
     'title' => book.title,
-    'author' => book.author,
-    'rentals' => [] # Assuming you don't want to include rentals in the book hash
+    'author' => book.author
   }
 end
 
-# method to load rentals from 'rental.json'
 def load_rentals_from_json
-  if File.exist?('rental.json')
-    json_data = File.read('rental.json')
+  if File.exist?('rentals.json')
+    json_data = File.read('rentals.json')
     begin
       JSON.parse(json_data)
     rescue StandardError
