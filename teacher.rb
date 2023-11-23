@@ -6,6 +6,8 @@ class Teacher < Person
     @specialization = specialization
   end
 
+  # Converts the Teacher object to a hash representation.
+  # Returns: a hash containing relevant information about the teacher
   def to_hash
     {
       id: @id,
@@ -17,6 +19,8 @@ class Teacher < Person
     }
   end
 
+  # Determines whether the teacher can use a particular service.
+  # Returns: true (Teachers can use the service)
   def can_use_service?
     true
   end
