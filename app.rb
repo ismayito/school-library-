@@ -39,10 +39,16 @@ class App
   # method to return a list of rentals
   def list_rental_for_a_person
     list_people_from_json
-    print 'Enter person ID from the list above '
+    print 'Enter person ID from the list above: '
     person_id = gets.chomp.to_i
+
+    # Debugging statements
+    puts "Input person_id: #{person_id}"
+    @person.each { |p| puts "Person ID in array: #{p['id']}" }
+
     person = @person.find { |p| p['id'] == person_id }
-    person_hashed = Person.new(person['age'], person['name'])
+    person_hashed = Person.new(person['age'], person['name'], id: person['id'])
+
     if person_hashed
       puts "Rentals for #{person_hashed.name}:"
       person_hashed.rentals.each do |rental|
