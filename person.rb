@@ -1,45 +1,37 @@
-require './decorator'
-class Person < Nameable
-  attr_accessor :name, :age, :rentals
-  attr_reader :id
+require './nameable'
 
-  def initialize(age, name = 'unknown', id: nil, parent_permission: true)
+# Define the Person class, which is a subclass of Nameable
+class Person < Nameable
+  attr_accessor :name, :age
+  attr_reader :id, :rentals
+
+  def initialize(age, name = 'Not specified', parent_permission: true)
     super()
-    @id = id || Random.rand(1..1000)
+    @id = Random.rand(1..1000)
     @name = name
     @age = age
     @parent_permission = parent_permission
     @rentals = []
   end
 
-  def to_hash
-    {
-      'id' => @id,
-      'name' => @name,
-      'age' => @age,
-      'parent_permission' => @parent_permission,
-      'rentals' => @rentals,
-      'classroom' => @classroom
-    }
+  def can_use_services?
+    of_age? || @parent_permission ? true : false
   end
 
-  def correct_name
+  # Method to return the correct name of the person
+  def right_holder
     @name
   end
 
-  def add_rentals(book, date)
-    Rental.new(date, self, book)
+  def new_rental(rental)
+    @rentals << rental
+    rental.person = self
   end
 
   private
 
+  # Private method to check if the person is of age (18 years or older)
   def of_age?
     @age >= 18
-  end
-
-  public
-
-  def can_use_service?
-    of_age? || @parent_permission
   end
 end
