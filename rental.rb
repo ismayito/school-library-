@@ -1,27 +1,34 @@
-require './person'
-require './book'
 class Rental
-  attr_accessor :date, :person, :book
+  # Attribute readers for person and book, and an attribute accessor for date
+  attr_reader :person, :book
+  attr_accessor :date
 
-  def initialize(date, person, book)
+  # Constructor method for initializing a new Rental object with an optional date parameter
+  def initialize(date = 'Date not specified')
     @date = date
+  end
+
+  # Setter method for assigning a person to the rental and adding the rental to the person's list
+  def person=(person)
     @person = person
-    person.rentals << self
-    @book = book
-    book.rentals << self
+    # Add the rental to the person's list of rentals if not already included
+    person.rentals << self unless person.rentals.include?(self)
   end
 
-  def books=(book)
+  # Setter method for assigning a book to the rental and adding the rental to the book's list
+  def book=(book)
     @book = book
-    book.rentals.push(book) unless book.rentals.include?(book)
+    # Add the rental to the book's list of rentals if not already included
+    book.rentals << self unless book.rentals.include?(self)
   end
 
-  def persons=(person)
-    person.rentals.push(person) unless person.rentals.include?(person)
+  # Method to convert the object to a JSON representation
+  def to_json(*args)
+    {
+      person_id: @person.id,
+      book_title: @book.title,
+      book_author: @book.author,
+      date: @date
+    }.to_json(*args)
   end
 end
-
-person = Person.new(22, 'mayito')
-book = Book.new('comic', 'author')
-rent = Rental.new('12-02-2023', person, book)
-p rent

@@ -1,9 +1,11 @@
-require './decorator'
-class Person < Nameable
-  attr_accessor :name, :age, :rentals
-  attr_reader :id
+require './nameable'
 
-  def initialize(age, name = 'unknown', parent_permission: true)
+# Define the Person class, which is a subclass of Nameable
+class Person < Nameable
+  attr_accessor :name, :age
+  attr_reader :id, :rentals
+
+  def initialize(age, name = 'Not specified', parent_permission: true)
     super()
     @id = Random.rand(1..1000)
     @name = name
@@ -12,30 +14,24 @@ class Person < Nameable
     @rentals = []
   end
 
-  def correct_name
+  def can_use_services?
+    of_age? || @parent_permission ? true : false
+  end
+
+  # Method to return the correct name of the person
+  def right_holder
     @name
   end
 
-  def add_rentals(book, date)
-    Rental.new(date, self, book)
+  def new_rental(rental)
+    @rentals << rental
+    rental.person = self
   end
 
   private
 
+  # Private method to check if the person is of age (18 years or older)
   def of_age?
     @age >= 18
   end
-
-  public
-
-  def can_use_service?
-    of_age? || @parent_permission
-  end
 end
-
-person = Person.new(22, 'maximilianus')
-person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-puts capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-puts capitalized_trimmed_person.correct_name
